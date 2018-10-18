@@ -60,7 +60,7 @@ end
 -------------------------------------------------------------------------------
 
 local function secp256k1_pubkey_verify(self, signature, hash)
-    if type(signature) == 'str' then
+    if type(signature) == 'string' then
         signature = secp256k1_signature_new(signature)
     end
     return internal.ecdsa_verify(signature.int, hash, self.int)
@@ -101,7 +101,7 @@ local function secp256k1_pubkey_new(pubkey, tp)
     elseif #pubkey == 32 then -- generate from private key
         rv = internal.ec_pubkey_create(self.int, pubkey)
     else
-        assert(false)
+        error(('secp256k1.public_key_new: unknown public_key with length %s (expected 33/32)'):format(#pubkey))
     end
     if not rv then
         log.error('Failed to create pubkey')

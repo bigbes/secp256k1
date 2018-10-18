@@ -130,8 +130,6 @@ Tsecp256k1_ecdsa_signature_serialize_der(lua_State *L) {
 	secp256k1_ecdsa_signature *signature_obj;
 	signature_obj = luaL_checkudata(L, 1, signature_typename);
 
-	printf("!!! %x\n", signature_obj);
-
 	size_t signature_len = 128; unsigned char signature[128];
 
 	int rv = secp256k1_ecdsa_signature_serialize_der(
@@ -254,14 +252,14 @@ luaopen_secp256k1_internal(lua_State *L)
 	verify_context = secp256k1_context_create(SECP256K1_CONTEXT_VERIFY);
 	assert(context && sign_context && verify_context);
 
-	// #if 0
+	#if 0
 	secp256k1_context_set_error_callback(context,          &secp256k1_handler, NULL);
 	secp256k1_context_set_error_callback(sign_context,     &secp256k1_handler, NULL);
 	secp256k1_context_set_error_callback(verify_context,   &secp256k1_handler, NULL);
 	secp256k1_context_set_illegal_callback(context,        &secp256k1_handler, NULL);
 	secp256k1_context_set_illegal_callback(sign_context,   &secp256k1_handler, NULL);
 	secp256k1_context_set_illegal_callback(verify_context, &secp256k1_handler, NULL);
-	// #endif
+	#endif
 
 	static const struct luaL_Reg signature_meta[] = {
 		{NULL, NULL}
