@@ -1,0 +1,19 @@
+Source: tarantool-secp256k1
+Priority: optional
+Section: database
+Maintainer: Eugene Blikh <bigbes@gmail.com>
+Build-Depends: debhelper (>= 9), cdbs,
+               cmake (>= 2.8),
+               tarantool-dev (>= 1.9.0.0),
+               libsecp256k1-dev
+Standards-Version: 3.9.6
+Homepage: https://github.com/bigbes/tarantool-secp256k1
+Vcs-Git: git://github.com/bigbes/tarantool-secp256k1.git
+Vcs-Browser: https://github.com/bigbes/tarantool-secp256k1
+
+Package: tarantool-secp256k1
+Architecture: i386 amd64 armhf arm64
+Depends: tarantool (>= 1.9.0.0), ${shlibs:Depends}, ${misc:Depends}
+Pre-Depends: ${misc:Pre-Depends}
+Description: Secp256k1 library bindings for Tarantool
+ Secp256k1 library bindings for Tarantool
